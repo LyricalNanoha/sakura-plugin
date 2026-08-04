@@ -9,6 +9,7 @@ characters:
     sovitsWeights: "花火_e10_s80.pth"
     lang: "zh"
     referPath: "reference_audios/中文/emotions"
+    characterTags: "sparkle (honkai: star rail)"
     emotions:
       开心:
         file: "【开心】最近想根据性格给自己打造一个全新面具，换一副样子玩玩。有没有什么推荐？.wav"

@@ -42,6 +42,7 @@ const configSchema = {
         "EmojiLike",
         "SoraVideo",
         "VitsVoice",
+        "ComfyUI",
       ],
     },
   ],
@@ -74,6 +75,7 @@ const configSchema = {
     SoraVideo: "Sora视频",
     roles: "AI人设",
     VitsVoice: "角色语音",
+    ComfyUI: "AI生图",
   },
 
   fields: {
@@ -756,6 +758,46 @@ const configSchema = {
       help: "从 ChatGPT 获取的 Access Token，用于 Sora 视频生成",
     },
 
+    "ComfyUI.enabled": {
+      label: "启用AI生图",
+      type: "boolean",
+      help: "开启后 AI 可根据聊天意图自动生成动漫插画",
+    },
+    "ComfyUI.apiUrl": {
+      label: "ComfyUI API 地址",
+      type: "text",
+      help: "ComfyUI 服务地址，如 http://172.27.106.109:8188",
+    },
+    "ComfyUI.defaultWorkflow": {
+      label: "默认工作流",
+      type: "text",
+      help: "工作流文件名（不含.json），如 anima_turbo",
+    },
+    "ComfyUI.qualityPrefix": {
+      label: "质量前缀标签",
+      type: "text",
+      help: "自动添加到正向提示词前面的质量标签",
+    },
+    "ComfyUI.negativePrompt": {
+      label: "负面提示词",
+      type: "textarea",
+      help: "默认的负面提示词",
+    },
+    "ComfyUI.defaultWidth": {
+      label: "默认宽度",
+      type: "number",
+      min: 512,
+      max: 1536,
+      help: "生成图片的默认宽度(px)",
+    },
+    "ComfyUI.defaultHeight": {
+      label: "默认高度",
+      type: "number",
+      min: 512,
+      max: 1536,
+      help: "生成图片的默认高度(px)",
+    },
+
     "VitsVoice.enabled": {
       label: "启用角色语音",
       type: "boolean",
@@ -788,6 +830,7 @@ const configSchema = {
         sovitsWeights: { label: "SoVITS权重文件", type: "text", required: true, help: "如 花火_e10_s80.pth" },
         lang: { label: "语言", type: "text", help: "zh/ja/en，默认 zh" },
         referPath: { label: "参考音频子路径", type: "text", help: "角色目录下的参考音频相对路径" },
+        characterTags: { label: "角色生图标签", type: "textarea", help: "Danbooru风格标签(英文逗号分隔)，生图时自动添加。如: sparkle (honkai: star rail), pink hair, long hair" },
       },
     },
 
