@@ -773,11 +773,6 @@ const configSchema = {
       type: "text",
       help: "工作流文件名（不含.json），如 anima_turbo",
     },
-    "ComfyUI.qualityPrefix": {
-      label: "质量前缀标签",
-      type: "text",
-      help: "自动添加到正向提示词前面的质量标签",
-    },
     "ComfyUI.negativePrompt": {
       label: "负面提示词",
       type: "textarea",

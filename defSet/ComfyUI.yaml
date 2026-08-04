@@ -2,10 +2,9 @@ enabled: false
 apiUrl: "http://172.27.106.109:8188"
 defaultWorkflow: "anima_turbo"
 
-qualityPrefix: "masterpiece, best quality, score_7, highres, newest, safe"
-negativePrompt: "worst quality, low quality, score_1, score_2, score_3, artist name, blurry, jpeg artifacts, chromatic aberration"
+negativePrompt: "worst quality, low quality, score_1, score_2, score_3, artist name"
 
 defaultWidth: 896
 defaultHeight: 1152
 
-characterTags: "sparkle (honkai: star rail), 1girl, solo, pink hair, long hair, hair ornament, purple eyes, multicolored hair"
+characterTags: "1girl, solo, sparkle (honkai: star rail), pink hair, long hair, hair ornament, purple eyes, multicolored hair"
