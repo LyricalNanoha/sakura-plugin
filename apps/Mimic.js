@@ -299,12 +299,19 @@ export class Mimic extends plugin {
             return false
           }
 
-          if (textContent) {
+          const hasVoiceCall = functionCalls.some(fc => fc.name === "sendVoice")
+
+          if (!hasVoiceCall && textContent) {
             const cleanedTextContent = textContent.replace(/\n+$/, "")
             const parsedcleanedTextContent = parseAtMessage(cleanedTextContent)
             await e.reply(parsedcleanedTextContent, true)
           }
           const executedResults = await executeToolCalls(e, functionCalls)
+
+          if (hasVoiceCall) {
+            return false
+          }
+
           currentFullHistory.push(...executedResults)
           currentGeminiResponse = await getAI(
             Channel,

@@ -246,12 +246,29 @@ export class AIChat extends plugin {
             return true
           }
 
-          if (textContent) {
+          const hasVoiceCall = functionCalls.some(fc => fc.name === "sendVoice")
+
+          if (!hasVoiceCall && textContent) {
             const cleanedTextContent = textContent.replace(/\n+$/, "")
             const parsedcleanedTextContent = parseAtMessage(cleanedTextContent)
             await this.reply(parsedcleanedTextContent, true)
           }
           const executedResults = await executeToolCalls(e, functionCalls)
+
+          if (hasVoiceCall) {
+            if (History) {
+              currentFullHistory.push(...executedResults)
+              const historyToSave = currentFullHistory.filter(
+                (item) =>
+                  item.role === "user" ||
+                  (item.role === "model" &&
+                    item.parts.every((p) => p.hasOwnProperty("text")))
+              )
+              await saveConversationHistory(e, historyToSave, prefix)
+            }
+            return true
+          }
+
           currentFullHistory.push(...executedResults)
 
           currentAIResponse = await getAI(
