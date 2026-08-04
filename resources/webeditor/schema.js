@@ -41,6 +41,7 @@ const configSchema = {
         "groupnotice",
         "EmojiLike",
         "SoraVideo",
+        "VitsVoice",
       ],
     },
   ],
@@ -72,6 +73,7 @@ const configSchema = {
     EmojiLike: "表情回应",
     SoraVideo: "Sora视频",
     roles: "AI人设",
+    VitsVoice: "角色语音",
   },
 
   fields: {
@@ -752,6 +754,41 @@ const configSchema = {
       label: "OpenAI Access Token",
       type: "textarea",
       help: "从 ChatGPT 获取的 Access Token，用于 Sora 视频生成",
+    },
+
+    "VitsVoice.enabled": {
+      label: "启用角色语音",
+      type: "boolean",
+      help: "开启后 AI 可自主决定何时发送语音消息",
+    },
+    "VitsVoice.apiUrl": {
+      label: "GPT-SoVITS API 地址",
+      type: "text",
+      help: "GPT-SoVITS 服务地址，如 http://172.25.104.100:9880",
+    },
+    "VitsVoice.charactersBasePath": {
+      label: "角色目录路径",
+      type: "text",
+      help: "服务器上角色模型的基础路径，如 /data/gpt-sovits/characters",
+    },
+    "VitsVoice.defaultCharacter": {
+      label: "默认角色",
+      type: "text",
+      help: "当前使用的角色名称，需与角色列表中的名称一致",
+    },
+    "VitsVoice.characters": {
+      label: "角色配置",
+      type: "array",
+      itemType: "object",
+      titleField: "name",
+      help: "配置各角色的模型和参考音频",
+      schema: {
+        name: { label: "角色名", type: "text", required: true, help: "需与角色目录名一致" },
+        gptWeights: { label: "GPT权重文件", type: "text", required: true, help: "如 花火-e10.ckpt" },
+        sovitsWeights: { label: "SoVITS权重文件", type: "text", required: true, help: "如 花火_e10_s80.pth" },
+        lang: { label: "语言", type: "text", help: "zh/ja/en，默认 zh" },
+        referPath: { label: "参考音频子路径", type: "text", help: "角色目录下的参考音频相对路径" },
+      },
     },
 
     "EmojiLike.configs": {

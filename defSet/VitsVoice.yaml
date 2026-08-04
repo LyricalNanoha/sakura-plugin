@@ -1,1 +1,24 @@
-defaultSpeaker: 派蒙
+enabled: false
+apiUrl: "http://172.25.104.100:9880"
+charactersBasePath: "/data/gpt-sovits/characters"
+defaultCharacter: "花火"
+
+characters:
+  花火:
+    gptWeights: "花火-e10.ckpt"
+    sovitsWeights: "花火_e10_s80.pth"
+    lang: "zh"
+    referPath: "reference_audios/中文/emotions"
+    emotions:
+      开心:
+        file: "【开心】最近想根据性格给自己打造一个全新面具，换一副样子玩玩。有没有什么推荐？.wav"
+        prompt: "最近想根据性格给自己打造一个全新面具，换一副样子玩玩。有没有什么推荐？"
+      吃惊:
+        file: "【吃惊】⋯好吧，看你这个表情是不会相信我的⋯没事，我可以明天再来问你一遍！.wav"
+        prompt: "⋯好吧，看你这个表情是不会相信我的⋯没事，我可以明天再来问你一遍！"
+      难过:
+        file: "【难过】——活在梦里的人们，真的能够远离痛苦，收获真正的幸福吗？.wav"
+        prompt: "——活在梦里的人们，真的能够远离痛苦，收获真正的幸福吗？"
+      恐惧:
+        file: "【恐惧】合作对象储备库⋯.wav"
+        prompt: "合作对象储备库⋯"
