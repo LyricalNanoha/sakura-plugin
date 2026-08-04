@@ -2,6 +2,7 @@ enabled: false
 apiUrl: "http://172.27.106.109:8188"
 defaultWorkflow: "anima_turbo"
 
+qualityPrefix: "masterpiece, best quality, score_7, highres, newest, safe"
 negativePrompt: "worst quality, low quality, score_1, score_2, score_3, artist name"
 
 defaultWidth: 896

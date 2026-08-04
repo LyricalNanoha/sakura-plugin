@@ -51,8 +51,8 @@
       "latent_image": ["6", 0],
       "seed": "%seed%",
       "control_after_generate": "randomize",
-      "steps": 12,
-      "cfg": 1.0,
+      "steps": 35,
+      "cfg": 4.0,
       "sampler_name": "er_sde",
       "scheduler": "simple",
       "denoise": 1.0
