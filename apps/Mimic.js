@@ -9,6 +9,7 @@ import Setting from "../lib/setting.js"
 import cfg from "../../../lib/config/config.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
 import { PermissionManager } from "../lib/PermissionManager.js"
+import { checkImageIntent } from "../lib/AIUtils/imageIntentDetector.js"
 
 export class Mimic extends plugin {
   constructor() {
@@ -309,6 +310,7 @@ export class Mimic extends plugin {
           const executedResults = await executeToolCalls(e, functionCalls)
 
           if (hasVoiceCall) {
+            checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
             return false
           }
 
@@ -344,6 +346,7 @@ export class Mimic extends plugin {
           }, recalltime * 1000)
         }
       }
+      checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
     } catch (error) {
       logger.error(`处理过程中出现错误: ${error.message}`)
       return false

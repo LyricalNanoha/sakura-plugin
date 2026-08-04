@@ -10,6 +10,7 @@ import { executeToolCalls } from "../lib/AIUtils/tools/tools.js"
 import { parseAtMessage, getQuoteContent } from "../lib/AIUtils/messaging.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
 import { PermissionManager } from "../lib/PermissionManager.js"
+import { checkImageIntent } from "../lib/AIUtils/imageIntentDetector.js"
 export class AIChat extends plugin {
   constructor() {
     super({
@@ -266,6 +267,7 @@ export class AIChat extends plugin {
               )
               await saveConversationHistory(e, historyToSave, prefix)
             }
+            checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
             return true
           }
 
@@ -303,6 +305,7 @@ export class AIChat extends plugin {
 
       const msg = parseAtMessage(finalResponseText)
       await this.reply(msg)
+      checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
     } catch (error) {
       logger.error(`Chat处理过程中出现错误: ${error.message}`)
       await this.reply(`处理过程中出现错误: ${error.message}`, true, { recallMsg: 10 })
