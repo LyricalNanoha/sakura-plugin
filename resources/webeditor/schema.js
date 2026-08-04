@@ -797,6 +797,11 @@ const configSchema = {
       max: 1536,
       help: "生成图片的默认高度(px)",
     },
+    "ComfyUI.characterTags": {
+      label: "角色生图标签",
+      type: "textarea",
+      help: "当前角色的 Danbooru 风格标签（英文逗号分隔），生图时自动注入。如: sparkle (honkai: star rail), 1girl, solo, pink hair, long hair",
+    },
 
     "VitsVoice.enabled": {
       label: "启用角色语音",
