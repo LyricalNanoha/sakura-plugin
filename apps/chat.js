@@ -103,7 +103,7 @@ export class AIChat extends plugin {
       }
     }
 
-    logger.debug(`[Chat] textToMatch="${textToMatch}", isAtBot=${isAtBot}, isReplyToBot=${isReplyToBot}, self_id=${e.self_id}, atSegments=${JSON.stringify(e.message?.filter(m => m.type === "at"))}`)
+    logger.info(`[Chat] textToMatch="${textToMatch}", isAtBot=${isAtBot}, isReplyToBot=${isReplyToBot}, self_id=${e.self_id}, atSegments=${JSON.stringify(e.message?.filter(m => m.type === "at"))}`)
 
     const matchedProfile = config.profiles.find(p =>
       textToMatch.startsWith(p.prefix) ||
