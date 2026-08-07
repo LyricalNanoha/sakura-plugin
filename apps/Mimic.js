@@ -231,6 +231,7 @@ export class Mimic extends plugin {
     let finalResponseText = ""
     let currentFullHistory = []
     let toolCallCount = 0
+    let hasGeneratedImage = false
     const Channel = config.Channel
     try {
       const imgBase64List = (await getImg(e, false, true)) || []
@@ -309,8 +310,14 @@ export class Mimic extends plugin {
           }
           const executedResults = await executeToolCalls(e, functionCalls)
 
+          if (functionCalls.some(fc => fc.name === "generateAnimeImage")) {
+            hasGeneratedImage = true
+          }
+
           if (hasVoiceCall) {
-            checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+            if (!hasGeneratedImage) {
+              checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+            }
             return false
           }
 
@@ -346,7 +353,9 @@ export class Mimic extends plugin {
           }, recalltime * 1000)
         }
       }
-      checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+      if (!hasGeneratedImage) {
+        checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+      }
     } catch (error) {
       logger.error(`处理过程中出现错误: ${error.message}`)
       return false

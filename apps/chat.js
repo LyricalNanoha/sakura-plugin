@@ -176,6 +176,7 @@ export class AIChat extends plugin {
     let finalResponseText = ""
     let currentFullHistory = []
     let toolCallCount = 0
+    let hasGeneratedImage = false
 
     try {
       if (History) {
@@ -258,6 +259,10 @@ export class AIChat extends plugin {
           }
           const executedResults = await executeToolCalls(e, functionCalls)
 
+          if (functionCalls.some(fc => fc.name === "generateAnimeImage")) {
+            hasGeneratedImage = true
+          }
+
           if (hasVoiceCall) {
             if (History) {
               currentFullHistory.push(...executedResults)
@@ -269,7 +274,9 @@ export class AIChat extends plugin {
               )
               await saveConversationHistory(e, historyToSave, prefix)
             }
-            checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+            if (!hasGeneratedImage) {
+              checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+            }
             return true
           }
 
@@ -307,7 +314,9 @@ export class AIChat extends plugin {
 
       const msg = parseAtMessage(finalResponseText)
       await this.reply(msg)
-      checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+      if (!hasGeneratedImage) {
+        checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+      }
     } catch (error) {
       logger.error(`Chat处理过程中出现错误: ${error.message}`)
       await this.reply(`处理过程中出现错误: ${error.message}`, true, { recallMsg: 10 })
