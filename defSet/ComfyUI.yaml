@@ -10,6 +10,4 @@ defaultHeight: 1152
 
 characterTags: "1girl, solo, sparkle (honkai: star rail), pink hair, long hair, hair ornament, purple eyes, multicolored hair"
 
-nsfwGroups: []
-nsfwRecall: true
-nsfwRecallDelay: 30
+nsfwGroupConfigs: []

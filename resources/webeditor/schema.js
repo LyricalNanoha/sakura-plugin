@@ -802,22 +802,17 @@ const configSchema = {
       type: "textarea",
       help: "当前角色的 Danbooru 风格标签（英文逗号分隔），生图时自动注入。如: sparkle (honkai: star rail), 1girl, solo, pink hair, long hair",
     },
-    "ComfyUI.nsfwGroups": {
-      label: "NSFW 允许群组",
-      type: "groupSelect",
-      help: "选择允许生成 NSFW 图片的群聊，未选中的群将拒绝 NSFW 请求",
-    },
-    "ComfyUI.nsfwRecall": {
-      label: "NSFW 自动撤回",
-      type: "boolean",
-      help: "开启后 NSFW 图片发送一段时间后自动撤回",
-    },
-    "ComfyUI.nsfwRecallDelay": {
-      label: "撤回延迟(秒)",
-      type: "number",
-      min: 5,
-      max: 300,
-      help: "NSFW 图片发送后多少秒自动撤回（默认30秒）",
+    "ComfyUI.nsfwGroupConfigs": {
+      label: "NSFW 分群配置",
+      type: "array",
+      itemType: "object",
+      titleField: "group",
+      help: "为特定群配置 NSFW 图片策略，未配置的群将拒绝 NSFW 请求",
+      schema: {
+        group: { label: "群聊", type: "groupSelect", required: true },
+        recall: { label: "自动撤回", type: "boolean", help: "是否在发送后自动撤回 NSFW 图片" },
+        recallDelay: { label: "撤回延迟(秒)", type: "number", min: 5, max: 300, help: "发送后多少秒撤回（默认30秒）" },
+      },
     },
 
     "VitsVoice.enabled": {
