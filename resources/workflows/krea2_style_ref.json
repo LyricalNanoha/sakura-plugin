@@ -17,8 +17,8 @@
       "model": ["1", 0],
       "clip": ["2", 0],
       "lora_name": "krea2_style_reference.safetensors",
-      "strength_model": 1.0,
-      "strength_clip": 1.0
+      "strength_model": 0.8,
+      "strength_clip": 0.8
     }
   },
   "10": {
@@ -37,19 +37,23 @@
     "class_type": "CLIPTextEncode",
     "inputs": { "clip": ["4", 1], "text": "%negative_prompt%" }
   },
+  "7": {
+    "class_type": "EmptyLatentImage",
+    "inputs": { "width": "%width%", "height": "%height%", "batch_size": 1 }
+  },
   "8": {
     "class_type": "KSampler",
     "inputs": {
       "model": ["4", 0],
       "positive": ["5", 0],
       "negative": ["6", 0],
-      "latent_image": ["11", 0],
+      "latent_image": ["7", 0],
       "seed": "%seed%",
       "steps": "%steps%",
       "cfg": "%cfg%",
       "sampler_name": "er_sde",
       "scheduler": "simple",
-      "denoise": 0.65
+      "denoise": 1.0
     }
   },
   "9": {
