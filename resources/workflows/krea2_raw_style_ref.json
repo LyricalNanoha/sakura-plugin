@@ -49,10 +49,18 @@
       "conditioning": ["11", 0]
     }
   },
+  "22": {
+    "class_type": "ConditioningKrea2Rebalance",
+    "inputs": {
+      "conditioning": ["12", 0],
+      "multiplier": 4.0,
+      "per_layer_weights": "1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.5,5.0,1.1,4.0,1.0"
+    }
+  },
   "13": {
     "class_type": "ConditioningZeroOut",
     "inputs": {
-      "conditioning": ["12", 0]
+      "conditioning": ["22", 0]
     }
   },
   "14": {
@@ -60,7 +68,7 @@
     "inputs": {
       "cfg": "%cfg%",
       "model": ["5", 0],
-      "positive": ["12", 0],
+      "positive": ["22", 0],
       "negative": ["13", 0]
     }
   },
