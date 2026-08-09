@@ -53,8 +53,8 @@
     "class_type": "ConditioningKrea2Rebalance",
     "inputs": {
       "conditioning": ["12", 0],
-      "multiplier": 4.0,
-      "per_layer_weights": "1.0,1.0,1.0,1.0,1.0,1.0,1.0,2.5,5.0,1.1,4.0,1.0"
+      "multiplier": "%rebalance_multiplier%",
+      "per_layer_weights": "%rebalance_weights%"
     }
   },
   "13": {
