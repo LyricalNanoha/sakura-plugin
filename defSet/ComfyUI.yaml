@@ -5,6 +5,9 @@ defaultWorkflow: "anima_turbo"
 qualityPrefix: "masterpiece, best quality, score_7, highres, newest, safe"
 negativePrompt: "worst quality, low quality, score_1, score_2, score_3, artist name"
 
+krea2QualityPrefix: "masterpiece, best quality, highres, newest"
+krea2NegativePrompt: "worst quality, low quality, blurry"
+
 defaultWidth: 896
 defaultHeight: 1152
 

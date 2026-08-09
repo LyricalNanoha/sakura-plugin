@@ -761,7 +761,7 @@ const configSchema = {
     "ComfyUI.enabled": {
       label: "启用AI生图",
       type: "boolean",
-      help: "开启后 AI 可根据聊天意图自动生成动漫插画",
+      help: "开启后 AI 可根据聊天意图自动生成图片",
     },
     "ComfyUI.apiUrl": {
       label: "ComfyUI API 地址",
@@ -770,31 +770,45 @@ const configSchema = {
     },
     "ComfyUI.defaultWorkflow": {
       label: "默认工作流",
-      type: "text",
-      help: "工作流文件名（不含.json），如 anima_turbo",
+      type: "select",
+      options: [
+        { value: "anima_turbo", label: "Anima Turbo (动漫)" },
+        { value: "krea2_turbo", label: "Krea-2 Turbo (写实)" },
+      ],
+      help: "未指定风格时使用的默认工作流",
     },
     "ComfyUI.qualityPrefix": {
-      label: "质量前缀标签",
+      label: "Anima 质量前缀标签",
       type: "text",
-      help: "自动添加到正向提示词最前面的标签（Base版需要，Turbo版可留空）",
+      help: "Anima 工作流正向提示词的质量前缀",
     },
     "ComfyUI.negativePrompt": {
-      label: "负面提示词",
+      label: "Anima 负面提示词",
       type: "textarea",
-      help: "默认的负面提示词",
+      help: "Anima 工作流的默认负面提示词",
+    },
+    "ComfyUI.krea2QualityPrefix": {
+      label: "Krea-2 质量前缀标签",
+      type: "text",
+      help: "Krea-2 工作流正向提示词的质量前缀",
+    },
+    "ComfyUI.krea2NegativePrompt": {
+      label: "Krea-2 负面提示词",
+      type: "textarea",
+      help: "Krea-2 工作流的默认负面提示词",
     },
     "ComfyUI.defaultWidth": {
       label: "默认宽度",
       type: "number",
       min: 512,
-      max: 1536,
+      max: 2048,
       help: "生成图片的默认宽度(px)",
     },
     "ComfyUI.defaultHeight": {
       label: "默认高度",
       type: "number",
       min: 512,
-      max: 1536,
+      max: 2048,
       help: "生成图片的默认高度(px)",
     },
     "ComfyUI.characterTags": {
