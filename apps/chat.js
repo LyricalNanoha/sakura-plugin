@@ -247,6 +247,9 @@ export class AIChat extends plugin {
           const validCalls = functionCalls.filter(fc => !IMAGE_TOOL_NAMES.includes(fc.name))
 
           if (validCalls.length === 0) {
+            if (textContent) {
+              finalResponseText = textContent
+            }
             break
           }
 
@@ -313,7 +316,9 @@ export class AIChat extends plugin {
       }
 
       const msg = parseAtMessage(finalResponseText)
-      await this.reply(msg)
+      if (msg) {
+        await this.reply(msg)
+      }
       checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
     } catch (error) {
       logger.error(`Chat处理过程中出现错误: ${error.message}`)
