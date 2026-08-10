@@ -259,7 +259,7 @@ export class AIChat extends plugin {
           }
           const executedResults = await executeToolCalls(e, functionCalls)
 
-          if (functionCalls.some(fc => fc.name === "generateAnimeImage" || fc.name === "generateImage")) {
+          if (functionCalls.some(fc => fc.name === "generateImage")) {
             hasGeneratedImage = true
           }
 
