@@ -315,8 +315,8 @@ export class AIChat extends plugin {
         await saveConversationHistory(e, historyToSave, prefix)
       }
 
-      const msg = parseAtMessage(finalResponseText)
-      if (msg) {
+      if (finalResponseText) {
+        const msg = parseAtMessage(finalResponseText)
         await this.reply(msg)
       }
       checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
