@@ -243,20 +243,27 @@ export class AIChat extends plugin {
         }
 
         if (functionCalls && functionCalls.length > 0) {
+          const IMAGE_TOOL_NAMES = ["generateImage", "generateAnimeImage", "ImageGenerator"]
+          const validCalls = functionCalls.filter(fc => !IMAGE_TOOL_NAMES.includes(fc.name))
+
+          if (validCalls.length === 0) {
+            break
+          }
+
           toolCallCount++
           if (toolCallCount >= 5) {
             logger.warn(`[Chat] 工具调用次数超过上限，强行结束对话`)
             return true
           }
 
-          const hasVoiceCall = functionCalls.some(fc => fc.name === "sendVoice")
+          const hasVoiceCall = validCalls.some(fc => fc.name === "sendVoice")
 
           if (!hasVoiceCall && textContent) {
             const cleanedTextContent = textContent.replace(/\n+$/, "")
             const parsedcleanedTextContent = parseAtMessage(cleanedTextContent)
             await this.reply(parsedcleanedTextContent, true)
           }
-          const executedResults = await executeToolCalls(e, functionCalls)
+          const executedResults = await executeToolCalls(e, validCalls)
 
           if (hasVoiceCall) {
             if (History) {
