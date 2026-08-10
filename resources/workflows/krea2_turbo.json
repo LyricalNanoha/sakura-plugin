@@ -1,7 +1,7 @@
 {
   "1": {
     "class_type": "UNETLoader",
-    "inputs": { "unet_name": "Moody-Cutie-Mix-V1_00001__fp8.safetensors", "weight_dtype": "default" }
+    "inputs": { "unet_name": "moodyKrea2Mix_v50BF16.safetensors", "weight_dtype": "default" }
   },
   "2": {
     "class_type": "CLIPLoader",
@@ -74,7 +74,7 @@
     "inputs": { "samples": ["12", 0], "vae": ["3", 0] }
   },
   "14": {
-    "class_type": "PreviewImage",
-    "inputs": { "images": ["13", 0] }
+    "class_type": "ETN_SendImageWebSocket",
+    "inputs": { "images": ["13", 0], "format": "PNG" }
   }
 }
