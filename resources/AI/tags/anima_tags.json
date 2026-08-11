@@ -1,0 +1,388 @@
+{
+  "_meta": {
+    "description": "Anima 模型 Danbooru 标签知识库 - 用于 RAG 检索辅助 AI 生成准确标签",
+    "version": "1.0.0",
+    "format": "keywords(中文触发词) → tags(Danbooru标签) + notes(备注)"
+  },
+
+  "characters": {
+    "_description": "动漫角色 → 对应 Danbooru 规范标签 + 外貌特征标签",
+    "entries": [
+      {
+        "keywords": ["花火", "星穹铁道花火", "sparkle"],
+        "tags": "sparkle (honkai: star rail)",
+        "appearance": "pink hair, long hair, hair ornament, purple eyes, multicolored hair, fox ears",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["流萤", "星穹铁道流萤", "firefly"],
+        "tags": "firefly (honkai: star rail)",
+        "appearance": "brown hair, long hair, hair ribbon, yellow eyes, armor",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["符玄", "fuxuan"],
+        "tags": "fu xuan (honkai: star rail)",
+        "appearance": "purple hair, short hair, hair ornament, yellow eyes, chinese clothes, hat",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["黑塔", "herta"],
+        "tags": "herta (honkai: star rail)",
+        "appearance": "brown hair, twintails, red eyes, dress, bow",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["知更鸟", "罗宾", "robin", "星穹铁道罗宾"],
+        "tags": "robin (honkai: star rail)",
+        "appearance": "blonde hair, long hair, blue eyes, idol clothes, microphone",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["银狼", "silverwolf"],
+        "tags": "silver wolf (honkai: star rail)",
+        "appearance": "grey hair, short hair, purple eyes, hoodie, gaming",
+        "series": "honkai: star rail"
+      },
+      {
+        "keywords": ["甘雨", "ganyu"],
+        "tags": "ganyu (genshin impact)",
+        "appearance": "blue hair, long hair, purple eyes, horns, chinese clothes, detached sleeves",
+        "series": "genshin impact"
+      },
+      {
+        "keywords": ["雷电将军", "雷神", "raiden", "shogun"],
+        "tags": "raiden shogun (genshin impact)",
+        "appearance": "purple hair, long hair, purple eyes, japanese clothes, braided ponytail",
+        "series": "genshin impact"
+      },
+      {
+        "keywords": ["胡桃", "hutao"],
+        "tags": "hu tao (genshin impact)",
+        "appearance": "brown hair, long hair, twintails, red eyes, hat, chinese clothes, flower-shaped pupils",
+        "series": "genshin impact"
+      },
+      {
+        "keywords": ["纳西妲", "草神", "nahida"],
+        "tags": "nahida (genshin impact)",
+        "appearance": "white hair, long hair, green eyes, pointy ears, dress, loli",
+        "series": "genshin impact"
+      },
+      {
+        "keywords": ["芙宁娜", "furina"],
+        "tags": "furina (genshin impact)",
+        "appearance": "blue hair, multicolored hair, long hair, blue eyes, heterochromia, hat, dress",
+        "series": "genshin impact"
+      },
+      {
+        "keywords": ["初音未来", "初音", "miku"],
+        "tags": "hatsune miku",
+        "appearance": "aqua hair, twintails, very long hair, aqua eyes, detached sleeves, thighhighs, necktie",
+        "series": "vocaloid"
+      },
+      {
+        "keywords": ["2b", "尼尔", "nier"],
+        "tags": "yorha no. 2 type b",
+        "appearance": "white hair, short hair, blindfold, black dress, thighhighs, juliet sleeves",
+        "series": "nier automata"
+      },
+      {
+        "keywords": ["弗里莲", "frieren"],
+        "tags": "frieren",
+        "appearance": "white hair, long hair, twin braids, green eyes, pointy ears, capelet, staff",
+        "series": "sousou no frieren"
+      },
+      {
+        "keywords": ["费恩", "fern"],
+        "tags": "fern (sousou no frieren)",
+        "appearance": "purple hair, long hair, purple eyes, cape, staff",
+        "series": "sousou no frieren"
+      },
+      {
+        "keywords": ["琪露诺", "cirno"],
+        "tags": "cirno",
+        "appearance": "blue hair, short hair, blue eyes, ice wings, blue dress, ribbon, bow",
+        "series": "touhou"
+      },
+      {
+        "keywords": ["灵梦", "reimu"],
+        "tags": "hakurei reimu",
+        "appearance": "brown hair, long hair, red eyes, hair ribbon, detached sleeves, red skirt, sarashi",
+        "series": "touhou"
+      },
+      {
+        "keywords": ["魔理沙", "marisa"],
+        "tags": "kirisame marisa",
+        "appearance": "blonde hair, long hair, yellow eyes, braid, witch hat, apron, broom",
+        "series": "touhou"
+      },
+      {
+        "keywords": ["蕾姆", "rem"],
+        "tags": "rem (re:zero)",
+        "appearance": "blue hair, short hair, blue eyes, maid, hair over one eye, x hair ornament",
+        "series": "re:zero"
+      },
+      {
+        "keywords": ["拉姆", "ram"],
+        "tags": "ram (re:zero)",
+        "appearance": "pink hair, short hair, red eyes, maid, hair over one eye, x hair ornament",
+        "series": "re:zero"
+      },
+      {
+        "keywords": ["亚丝娜", "asuna"],
+        "tags": "yuuki asuna",
+        "appearance": "orange hair, long hair, brown eyes, white outfit, rapier",
+        "series": "sword art online"
+      },
+      {
+        "keywords": ["02", "zero two", "零二"],
+        "tags": "zero two (darling in the franxx)",
+        "appearance": "pink hair, long hair, green eyes, horns, red bodysuit, white headband",
+        "series": "darling in the franxx"
+      },
+      {
+        "keywords": ["明日香", "asuka"],
+        "tags": "souryuu asuka langley",
+        "appearance": "orange hair, long hair, blue eyes, red plugsuit, hair clips, interface headset",
+        "series": "neon genesis evangelion"
+      },
+      {
+        "keywords": ["绫波丽", "rei"],
+        "tags": "ayanami rei",
+        "appearance": "blue hair, short hair, red eyes, white plugsuit, bandage",
+        "series": "neon genesis evangelion"
+      },
+      {
+        "keywords": ["间谍过家家", "阿尼亚", "anya"],
+        "tags": "anya (spy x family)",
+        "appearance": "pink hair, short hair, green eyes, hair ornament, school uniform, loli",
+        "series": "spy x family"
+      },
+      {
+        "keywords": ["小忍", "忍", "shinobu"],
+        "tags": "kochou shinobu",
+        "appearance": "black hair, long hair, purple eyes, butterfly hair ornament, haori, japanese clothes",
+        "series": "kimetsu no yaiba"
+      },
+      {
+        "keywords": ["喜多", "喜多川", "kitagawa"],
+        "tags": "kitagawa marin",
+        "appearance": "blonde hair, long hair, brown eyes, gyaru, earrings, school uniform",
+        "series": "sono bisque doll wa koi wo suru"
+      },
+      {
+        "keywords": ["波奇", "孤独摇滚", "bocchi"],
+        "tags": "gotoh hitori",
+        "appearance": "pink hair, long hair, blue eyes, cube hair ornament, track jacket",
+        "series": "bocchi the rock!"
+      }
+    ]
+  },
+
+  "actions": {
+    "_description": "动作/姿势的中文描述 → 对应 Danbooru 标签",
+    "entries": [
+      { "keywords": ["坐", "坐着"], "tags": "sitting" },
+      { "keywords": ["站", "站着", "站立"], "tags": "standing" },
+      { "keywords": ["躺", "躺着", "平躺"], "tags": "lying" },
+      { "keywords": ["趴", "趴着", "俯卧"], "tags": "prone" },
+      { "keywords": ["蹲", "蹲着", "蹲下"], "tags": "squatting" },
+      { "keywords": ["跑", "奔跑"], "tags": "running" },
+      { "keywords": ["走", "走路", "行走"], "tags": "walking" },
+      { "keywords": ["跳", "跳跃"], "tags": "jumping" },
+      { "keywords": ["飞", "飞行", "飘浮"], "tags": "flying, floating" },
+      { "keywords": ["看镜头", "看向观众", "注视"], "tags": "looking at viewer" },
+      { "keywords": ["回头", "回眸"], "tags": "looking back" },
+      { "keywords": ["低头", "俯视"], "tags": "looking down" },
+      { "keywords": ["抬头", "仰视"], "tags": "looking up" },
+      { "keywords": ["侧脸", "侧面"], "tags": "profile, from side" },
+      { "keywords": ["背对", "背影"], "tags": "from behind, back" },
+      { "keywords": ["比心", "爱心手势"], "tags": "heart hands, finger heart" },
+      { "keywords": ["比耶", "剪刀手", "v"], "tags": "v, peace sign" },
+      { "keywords": ["叉腰", "双手叉腰"], "tags": "hands on hips" },
+      { "keywords": ["抱膝", "抱腿"], "tags": "hugging own legs, knees up" },
+      { "keywords": ["翘腿", "二郎腿"], "tags": "crossed legs" },
+      { "keywords": ["张腿", "M字", "腿张开"], "tags": "spread legs, m legs" },
+      { "keywords": ["趴着翘臀", "翘臀"], "tags": "ass up, on all fours" },
+      { "keywords": ["伸懒腰", "手举过头"], "tags": "arms up, stretching" },
+      { "keywords": ["托腮", "手托下巴"], "tags": "hand on own chin, head rest" },
+      { "keywords": ["撩头发", "拨头发"], "tags": "hair tucking, hand in own hair" },
+      { "keywords": ["拥抱", "抱"], "tags": "hug, embrace" },
+      { "keywords": ["牵手"], "tags": "holding hands" },
+      { "keywords": ["亲", "亲嘴", "接吻"], "tags": "kiss" },
+      { "keywords": ["害羞", "脸红"], "tags": "blush, embarrassed" },
+      { "keywords": ["哭", "流泪"], "tags": "crying, tears" },
+      { "keywords": ["笑", "微笑"], "tags": "smile" },
+      { "keywords": ["大笑", "开心笑"], "tags": "open mouth, laughing, :d" },
+      { "keywords": ["生气", "愤怒"], "tags": "angry, furrowed brow" },
+      { "keywords": ["惊讶", "吃惊"], "tags": "surprised, open mouth, !!" },
+      { "keywords": ["吐舌头", "舌头"], "tags": "tongue out" },
+      { "keywords": ["眨眼", "单眼闭"], "tags": "one eye closed, wink" },
+      { "keywords": ["自拍", "拿手机"], "tags": "selfie, holding phone, smartphone" },
+      { "keywords": ["趴在桌上", "桌上趴"], "tags": "on desk, head on desk, lying on desk" },
+      { "keywords": ["骑", "骑坐"], "tags": "straddling" },
+      { "keywords": ["跪", "跪坐"], "tags": "kneeling, seiza" },
+      { "keywords": ["靠墙", "靠着墙"], "tags": "against wall, leaning" },
+      { "keywords": ["撑伞", "打伞"], "tags": "holding umbrella, umbrella" },
+      { "keywords": ["喝", "喝水", "喝饮料"], "tags": "drinking, cup, holding cup" },
+      { "keywords": ["吃", "吃东西"], "tags": "eating, food" },
+      { "keywords": ["读书", "看书"], "tags": "reading, book, holding book" },
+      { "keywords": ["弹吉他", "吉他"], "tags": "guitar, playing instrument" },
+      { "keywords": ["唱歌", "麦克风"], "tags": "singing, microphone" },
+      { "keywords": ["打游戏", "游戏"], "tags": "gaming, controller, playing games" },
+      { "keywords": ["睡觉", "睡着"], "tags": "sleeping, closed eyes" },
+      { "keywords": ["洗澡", "泡澡"], "tags": "bathing, wet, water, steam" },
+      { "keywords": ["换衣服", "脱衣", "穿衣"], "tags": "undressing, clothes pull" }
+    ]
+  },
+
+  "clothing": {
+    "_description": "服装/穿着 → Danbooru 标签",
+    "entries": [
+      { "keywords": ["JK", "校服", "制服", "学生装"], "tags": "school uniform, serafuku, sailor collar, pleated skirt" },
+      { "keywords": ["水手服"], "tags": "serafuku, sailor collar" },
+      { "keywords": ["西装校服", "衬衫校服"], "tags": "school uniform, white shirt, plaid skirt, blazer" },
+      { "keywords": ["泳装", "比基尼", "泳衣"], "tags": "swimsuit, bikini" },
+      { "keywords": ["连体泳衣", "死库水"], "tags": "school swimsuit, one-piece swimsuit" },
+      { "keywords": ["女仆", "女仆装"], "tags": "maid, maid headdress, maid apron, frills" },
+      { "keywords": ["和服", "浴衣"], "tags": "japanese clothes, kimono, obi" },
+      { "keywords": ["旗袍", "中国服"], "tags": "china dress, chinese clothes, side slit" },
+      { "keywords": ["婚纱", "新娘"], "tags": "wedding dress, bride, veil, white dress" },
+      { "keywords": ["哥特", "暗黑", "哥特萝莉"], "tags": "gothic lolita, black dress, frills, bonnet" },
+      { "keywords": ["萝莉塔", "lolita"], "tags": "lolita fashion, frills, petticoat, bonnet" },
+      { "keywords": ["体操服", "运动服"], "tags": "gym uniform, buruma, white shirt" },
+      { "keywords": ["啦啦队", "cheerleader"], "tags": "cheerleader, pom poms, crop top, miniskirt" },
+      { "keywords": ["护士", "护士装"], "tags": "nurse, nurse cap, white dress" },
+      { "keywords": ["兔女郎", "bunny"], "tags": "playboy bunny, rabbit ears, leotard, pantyhose, wrist cuffs" },
+      { "keywords": ["猫娘", "猫耳"], "tags": "cat ears, cat tail, animal ears" },
+      { "keywords": ["围裙", "裸围裙"], "tags": "naked apron, apron" },
+      { "keywords": ["衬衫", "白衬衫"], "tags": "white shirt, collared shirt" },
+      { "keywords": ["卫衣", "连帽衫", "hoodie"], "tags": "hoodie" },
+      { "keywords": ["T恤"], "tags": "t-shirt" },
+      { "keywords": ["毛衣", "针织衫"], "tags": "sweater, knit" },
+      { "keywords": ["露背毛衣", "杀手毛衣"], "tags": "virgin killer sweater, backless outfit" },
+      { "keywords": ["短裙", "迷你裙"], "tags": "miniskirt, skirt" },
+      { "keywords": ["热裤", "短裤"], "tags": "shorts, denim shorts" },
+      { "keywords": ["丝袜", "黑丝", "黑色丝袜"], "tags": "black thighhighs, thighhighs" },
+      { "keywords": ["白丝", "白色丝袜"], "tags": "white thighhighs, thighhighs" },
+      { "keywords": ["过膝袜", "长袜"], "tags": "thighhighs, over-kneehighs" },
+      { "keywords": ["连裤袜", "裤袜"], "tags": "pantyhose" },
+      { "keywords": ["吊带袜", "吊带"], "tags": "garter straps, garter belt, thighhighs" },
+      { "keywords": ["内衣", "胸罩"], "tags": "underwear, bra, panties" },
+      { "keywords": ["睡衣", "居家服"], "tags": "pajamas, nightgown" },
+      { "keywords": ["战斗服", "盔甲", "铠甲"], "tags": "armor, gauntlets, breastplate" },
+      { "keywords": ["赛博", "机械", "赛博朋克"], "tags": "cyberpunk, mechanical parts, neon lights" },
+      { "keywords": ["巫女", "巫女服"], "tags": "miko, hakama, japanese clothes, wide sleeves" },
+      { "keywords": ["修女", "修女服"], "tags": "nun, habit, cross" },
+      { "keywords": ["魔女", "女巫"], "tags": "witch, witch hat, cape, staff" }
+    ]
+  },
+
+  "bodyAttributes": {
+    "_description": "身体特征/属性标签",
+    "entries": [
+      { "keywords": ["大胸", "巨乳", "大奶"], "tags": "large breasts, huge breasts" },
+      { "keywords": ["贫乳", "平胸", "小胸"], "tags": "flat chest, small breasts" },
+      { "keywords": ["萝莉", "小女孩", "幼"], "tags": "loli, child, flat chest, petite" },
+      { "keywords": ["御姐", "成熟", "姐姐"], "tags": "mature female, tall female" },
+      { "keywords": ["双马尾", "双尾"], "tags": "twintails" },
+      { "keywords": ["马尾", "单马尾"], "tags": "ponytail" },
+      { "keywords": ["长发"], "tags": "long hair" },
+      { "keywords": ["短发"], "tags": "short hair" },
+      { "keywords": ["黑发", "黑色头发"], "tags": "black hair" },
+      { "keywords": ["金发", "黄发", "金色头发"], "tags": "blonde hair" },
+      { "keywords": ["白发", "银发", "白色头发"], "tags": "white hair, silver hair" },
+      { "keywords": ["红发", "红色头发"], "tags": "red hair" },
+      { "keywords": ["蓝发", "蓝色头发"], "tags": "blue hair" },
+      { "keywords": ["粉发", "粉色头发"], "tags": "pink hair" },
+      { "keywords": ["兽耳", "动物耳朵"], "tags": "animal ears" },
+      { "keywords": ["尾巴", "兽尾"], "tags": "tail, animal tail" },
+      { "keywords": ["翅膀", "天使翅膀"], "tags": "wings, angel wings" },
+      { "keywords": ["恶魔翅膀", "蝙蝠翅膀"], "tags": "demon wings, bat wings" },
+      { "keywords": ["角", "恶魔角"], "tags": "horns, demon horns" },
+      { "keywords": ["精灵耳", "尖耳"], "tags": "pointy ears, elf" },
+      { "keywords": ["眼镜", "戴眼镜"], "tags": "glasses, megane" },
+      { "keywords": ["眼罩", "独眼"], "tags": "eyepatch" },
+      { "keywords": ["伤疤", "疤痕"], "tags": "scar" },
+      { "keywords": ["纹身", "刺青"], "tags": "tattoo" },
+      { "keywords": ["湿身", "湿透", "淋湿"], "tags": "wet, wet clothes, wet hair" }
+    ]
+  },
+
+  "scenes": {
+    "_description": "场景/背景",
+    "entries": [
+      { "keywords": ["教室", "课室"], "tags": "classroom, school desk, indoors" },
+      { "keywords": ["卧室", "房间", "床上"], "tags": "bedroom, bed, indoors" },
+      { "keywords": ["浴室", "澡堂"], "tags": "bathroom, shower, steam, indoors" },
+      { "keywords": ["学校", "校园"], "tags": "school, outdoors, building" },
+      { "keywords": ["操场"], "tags": "school, sports field, outdoors" },
+      { "keywords": ["天台", "屋顶"], "tags": "rooftop, sky, railing, outdoors" },
+      { "keywords": ["海边", "沙滩"], "tags": "beach, ocean, sand, outdoors, blue sky" },
+      { "keywords": ["森林", "树林"], "tags": "forest, trees, nature, outdoors" },
+      { "keywords": ["花园", "花田"], "tags": "garden, flowers, outdoors" },
+      { "keywords": ["樱花", "樱花树"], "tags": "cherry blossoms, petals, spring" },
+      { "keywords": ["城市", "街道", "街头"], "tags": "city, street, urban, outdoors" },
+      { "keywords": ["咖啡店", "咖啡厅"], "tags": "cafe, indoors, table, cup" },
+      { "keywords": ["图书馆"], "tags": "library, bookshelf, indoors" },
+      { "keywords": ["电车", "地铁"], "tags": "train interior, subway, window" },
+      { "keywords": ["夜晚", "夜空", "星空"], "tags": "night, starry sky, dark, moon" },
+      { "keywords": ["日落", "夕阳", "黄昏"], "tags": "sunset, orange sky, dusk" },
+      { "keywords": ["雨天", "下雨"], "tags": "rain, wet, puddle, cloudy" },
+      { "keywords": ["雪", "下雪", "冬天"], "tags": "snow, winter, cold, breath" },
+      { "keywords": ["温泉", "露天温泉"], "tags": "onsen, hot spring, steam, water, towel" },
+      { "keywords": ["游泳池", "泳池"], "tags": "pool, poolside, water, outdoors" }
+    ]
+  },
+
+  "compositions": {
+    "_description": "构图/视角",
+    "entries": [
+      { "keywords": ["全身", "全身照"], "tags": "full body" },
+      { "keywords": ["上半身", "半身照"], "tags": "upper body" },
+      { "keywords": ["脸部特写", "面部特写"], "tags": "close-up, face focus, portrait" },
+      { "keywords": ["大头照", "头像"], "tags": "close-up, face, portrait" },
+      { "keywords": ["牛仔镜头", "膝上"], "tags": "cowboy shot" },
+      { "keywords": ["腿", "腿部", "看腿"], "tags": "legs, thighs, legs focus, full body" },
+      { "keywords": ["脚", "足", "足部"], "tags": "feet, barefoot, foot focus, full body" },
+      { "keywords": ["臀部", "屁股"], "tags": "ass, ass focus, from behind" },
+      { "keywords": ["俯视", "从上往下"], "tags": "from above" },
+      { "keywords": ["仰视", "从下往上"], "tags": "from below" },
+      { "keywords": ["侧面", "侧身"], "tags": "from side" },
+      { "keywords": ["背后", "从后面"], "tags": "from behind" },
+      { "keywords": ["正面", "面对镜头"], "tags": "facing viewer, looking at viewer" },
+      { "keywords": ["鱼眼", "广角"], "tags": "fisheye, wide-angle lens" },
+      { "keywords": ["特写", "放大"], "tags": "close-up, zoom" }
+    ]
+  },
+
+  "artists": {
+    "_description": "画师标签 - 仅当用户明确指定时使用，前缀@",
+    "categories": {
+      "清新萌系": {
+        "keywords": ["清新", "萌", "日常", "可爱", "治愈"],
+        "artists": ["@kantoku", "@anmi", "@hiten", "@coffee_kizoku", "@40hara", "@shiratamaco", "@tiv", "@misaki_kurehito"]
+      },
+      "大场景氛围": {
+        "keywords": ["壁纸", "场景", "背景", "宏大", "新海诚"],
+        "artists": ["@arsenixc", "@fuzichoco", "@mocha", "@rella", "@makoto_shinkai", "@rolua"]
+      },
+      "厚涂半写实": {
+        "keywords": ["厚涂", "半写实", "油画", "CG", "史诗", "电影"],
+        "artists": ["@wlop", "@guweiz", "@krenz", "@shal.e", "@nixeu", "@artgerm"]
+      },
+      "潮流设计": {
+        "keywords": ["潮流", "霓虹", "高饱和", "设计", "冲击"],
+        "artists": ["@mika_pikazo", "@lam", "@redjuice", "@yoneyama_mai", "@vofan"]
+      },
+      "暗黑科幻": {
+        "keywords": ["暗黑", "科幻", "赛博朋克", "机械", "废土"],
+        "artists": ["@neco", "@huke", "@wataboku", "@tokyo_genso"]
+      },
+      "游戏美术": {
+        "keywords": ["立绘", "游戏", "卡牌", "RPG"],
+        "artists": ["@hyung-tae_kim", "@lack", "@so-bin", "@akihiko_yoshida"]
+      }
+    }
+  }
+}

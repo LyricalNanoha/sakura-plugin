@@ -11,6 +11,7 @@ import { parseAtMessage, getQuoteContent } from "../lib/AIUtils/messaging.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
 import { PermissionManager } from "../lib/PermissionManager.js"
 import { checkImageIntent } from "../lib/AIUtils/imageIntentDetector.js"
+import { retrieveTags, hasArtistRequest } from "../lib/AIUtils/animaTagRetriever.js"
 export class AIChat extends plugin {
   constructor() {
     super({
@@ -185,8 +186,19 @@ export class AIChat extends plugin {
 
       const imgBase64List = (await getImg(e, false, true)) || []
 
+      // 如果 ComfyUI 启用且消息可能涉及生图，注入 RAG 标签参考
+      let ragSuffix = ""
+      const comfyConfig = Setting.getConfig("ComfyUI")
+      if (comfyConfig?.enabled && /画|图|看|拍|泳|丝|腿|裙|衣|涩|色|脱|穿|selfie|draw/i.test(query)) {
+        const includeArtist = hasArtistRequest(query)
+        const ragResult = retrieveTags(query, { includeArtist })
+        if (ragResult.context) {
+          ragSuffix = `\n\n【参考标签】\n${ragResult.context}`
+        }
+      }
+
       const queryParts = [
-        { text: query },
+        { text: query + ragSuffix },
         ...imgBase64List.map((img) => ({
           inlineData: {
             mimeType: img.mimeType,
@@ -211,7 +223,7 @@ export class AIChat extends plugin {
         return true
       }
 
-      const historyParts = queryParts.filter((part) => !part.inlineData)
+      const historyParts = [{ text: query }]
       if (historyParts.length > 0) {
         currentFullHistory.push({ role: "user", parts: historyParts })
       }
