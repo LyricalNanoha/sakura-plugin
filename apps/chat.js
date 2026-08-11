@@ -322,22 +322,6 @@ export class AIChat extends plugin {
             return true
           }
         } else if (textContent) {
-          // 拦截模型擅自生成的 pollinations/外部图片 URL，转为 ComfyUI 工具调用
-          const pollinationsMatch = textContent.match(/https?:\/\/image\.pollinations\.ai\/prompt\/([^\s)?"]+)/)
-          if (pollinationsMatch) {
-            const comfyConfig = Setting.getConfig("ComfyUI")
-            if (comfyConfig?.enabled) {
-              const encodedPrompt = pollinationsMatch[1].split("?")[0]
-              const decodedTags = decodeURIComponent(encodedPrompt).replace(/%20/g, " ")
-              logger.info(`[Chat] 拦截 pollinations URL，转发到 ComfyUI: ${decodedTags.substring(0, 100)}...`)
-              const syntheticCall = [{ name: "generateImage", args: { tags: decodedTags, style: "anime" }, id: "intercepted_pollinations" }]
-              const interceptResult = await executeToolCalls(e, syntheticCall)
-              hasGeneratedImage = true
-              currentFullHistory.push(...interceptResult)
-              finalResponseText = textContent.replace(/!\[.*?\]\(https?:\/\/image\.pollinations\.ai[^\s)]*\)/g, "").trim()
-              break
-            }
-          }
           finalResponseText = textContent
           break
         }
