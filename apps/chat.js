@@ -11,7 +11,10 @@ import { parseAtMessage, getQuoteContent } from "../lib/AIUtils/messaging.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
 import { PermissionManager } from "../lib/PermissionManager.js"
 import { checkImageIntent } from "../lib/AIUtils/imageIntentDetector.js"
-import { retrieveTags, hasArtistRequest } from "../lib/AIUtils/animaTagRetriever.js"
+import { retrieveTags, hasArtistRequest, semanticRetrieve, warmup } from "../lib/AIUtils/animaTagRetriever.js"
+
+// 后台预热语义索引
+warmup()
 export class AIChat extends plugin {
   constructor() {
     super({
@@ -194,6 +197,16 @@ export class AIChat extends plugin {
         const ragResult = retrieveTags(query, { includeArtist })
         if (ragResult.context) {
           ragSuffix = `\n\n【参考标签】\n${ragResult.context}`
+        }
+        // 语义增强：关键词匹配不到角色时用向量检索补充
+        if (!ragResult.characters || ragResult.characters.length === 0) {
+          const semanticResults = await semanticRetrieve(query)
+          if (semanticResults.length > 0) {
+            const semanticTags = semanticResults
+              .map(r => `${r.name}（${r.cnName}）${r.wiki ? " - " + r.wiki.slice(0, 60) : ""}`)
+              .join("\n")
+            ragSuffix += `\n\n【语义检索补充】\n${semanticTags}`
+          }
         }
       }
 
