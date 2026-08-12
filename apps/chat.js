@@ -11,10 +11,6 @@ import { parseAtMessage, getQuoteContent } from "../lib/AIUtils/messaging.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
 import { PermissionManager } from "../lib/PermissionManager.js"
 import { checkImageIntent } from "../lib/AIUtils/imageIntentDetector.js"
-import { retrieveTags, hasArtistRequest, semanticRetrieve, warmup } from "../lib/AIUtils/animaTagRetriever.js"
-
-// 后台预热语义索引
-warmup()
 export class AIChat extends plugin {
   constructor() {
     super({
@@ -189,29 +185,8 @@ export class AIChat extends plugin {
 
       const imgBase64List = (await getImg(e, false, true)) || []
 
-      // 如果 ComfyUI 启用且消息可能涉及生图，注入 RAG 标签参考
-      let ragSuffix = ""
-      const comfyConfig = Setting.getConfig("ComfyUI")
-      if (comfyConfig?.enabled && /画|图|看|拍|泳|丝|腿|裙|衣|涩|色|脱|穿|selfie|draw/i.test(query)) {
-        const includeArtist = hasArtistRequest(query)
-        const ragResult = retrieveTags(query, { includeArtist })
-        if (ragResult.context) {
-          ragSuffix = `\n\n【参考标签】\n${ragResult.context}`
-        }
-        // 语义增强：关键词匹配不到角色时用向量检索补充
-        if (!ragResult.characters || ragResult.characters.length === 0) {
-          const semanticResults = await semanticRetrieve(query)
-          if (semanticResults.length > 0) {
-            const semanticTags = semanticResults
-              .map(r => `${r.name}（${r.cnName}）${r.wiki ? " - " + r.wiki.slice(0, 60) : ""}`)
-              .join("\n")
-            ragSuffix += `\n\n【语义检索补充】\n${semanticTags}`
-          }
-        }
-      }
-
       const queryParts = [
-        { text: query + ragSuffix },
+        { text: query },
         ...imgBase64List.map((img) => ({
           inlineData: {
             mimeType: img.mimeType,
