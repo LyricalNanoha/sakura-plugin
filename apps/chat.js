@@ -177,6 +177,7 @@ export class AIChat extends plugin {
     let currentFullHistory = []
     let toolCallCount = 0
     let hasGeneratedImage = false
+    let hasForceRetried = false
 
     try {
       if (History) {
@@ -297,6 +298,28 @@ export class AIChat extends plugin {
             return true
           }
         } else if (textContent) {
+          // 兜底：如果之前调过 searchTags 但没调 generateImage，强制再给一次机会
+          if (!hasForceRetried && toolCallCount > 0 && !hasGeneratedImage) {
+            const hadSearchTags = currentFullHistory.some(item =>
+              item.role === "model" && item.parts?.some(p => p.functionCall?.name === "searchTags")
+            )
+            if (hadSearchTags) {
+              hasForceRetried = true
+              logger.info("[Chat] 检测到已调用 searchTags 但未生图，注入强制提示再试一次")
+              currentFullHistory.push({ role: "model", parts: [{ text: textContent }] })
+              currentFullHistory.push({
+                role: "user",
+                parts: [{ text: "[系统提示] 你刚才已经搜索了标签，现在请直接调用 generateImage 工具生成图片，使用你已知的标签即可，不需要再搜索。" }],
+              })
+              toolCallCount++
+              currentAIResponse = await getAI(Channel, e, "", Prompt, GroupContext, Tool, currentFullHistory)
+              if (typeof currentAIResponse === "string") {
+                await this.reply(currentAIResponse, true, { recallMsg: 10 })
+                return true
+              }
+              continue
+            }
+          }
           finalResponseText = textContent
           break
         }
