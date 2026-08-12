@@ -274,6 +274,9 @@ export class AIChat extends plugin {
               )
               await saveConversationHistory(e, historyToSave, prefix)
             }
+            if (!hasGeneratedImage) {
+              checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
+            }
             return true
           }
 
