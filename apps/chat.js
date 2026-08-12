@@ -245,7 +245,7 @@ export class AIChat extends plugin {
 
         if (functionCalls && functionCalls.length > 0) {
           toolCallCount++
-          if (toolCallCount >= 5) {
+          if (toolCallCount >= 8) {
             logger.warn(`[Chat] 工具调用次数超过上限，强行结束对话`)
             return true
           }
