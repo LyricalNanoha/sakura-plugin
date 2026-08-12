@@ -138,23 +138,7 @@ export class AIChat extends plugin {
 
     const quoteContent = await getQuoteContent(e)
     if (quoteContent) {
-      // 如果引用的是转发记录（生图记录），尝试从 Redis 取回原始 prompt
-      if (quoteContent.includes("[聊天记录]")) {
-        const promptKey = `img_prompt:${e.group_id || e.user_id}:last`
-        try {
-          const savedPrompt = await redis.get(promptKey)
-          if (savedPrompt) {
-            const promptData = JSON.parse(savedPrompt)
-            query = `(引用了之前生成的图片，原始生图参数如下，如果用户没有要求修改则必须100%完整复用这些参数：positive="${promptData.positive}", negative="${promptData.negative}", workflow="${promptData.workflowName}", width=${promptData.width}, height=${promptData.height}) ${query}`
-          } else {
-            query = `(${quoteContent.trim()}) ${query}`
-          }
-        } catch {
-          query = `(${quoteContent.trim()}) ${query}`
-        }
-      } else {
-        query = `(${quoteContent.trim()}) ${query}`
-      }
+      query = `(${quoteContent.trim()}) ${query}`
     }
 
     if (config.enableUserLock) {
