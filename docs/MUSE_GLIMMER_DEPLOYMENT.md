@@ -41,7 +41,7 @@ export HF_ENDPOINT=https://hf-mirror.com
 unset HF_HUB_OFFLINE
 
 # 下载到指定目录
-huggingface-cli download darkc0de/Muse-Glimmer-30B-heretic \
+hf download darkc0de/Muse-Glimmer-30B-heretic \
   --local-dir /data/hf_models/Muse-Glimmer-30B-heretic
 ```
 
@@ -86,7 +86,7 @@ llama.cpp 自 `b10353` 版本起完整支持 Muse Glimmer（PR #26841，2026-08-
 
 ```bash
 export HF_ENDPOINT=https://hf-mirror.com
-huggingface-cli download meta-models/Muse-Glimmer-30B-GGUF \
+hf download meta-models/Muse-Glimmer-30B-GGUF \
   --include "mmproj-Muse-Glimmer-30B-Q4_K_M.gguf" \
   --local-dir /data/hf_models/
 ```
