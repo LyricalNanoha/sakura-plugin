@@ -2,10 +2,6 @@ import Setting from "../lib/setting.js"
 import cfg from "../../../lib/config/config.js"
 import { getRolePrompt } from "../lib/RoleHelper.js"
 import { getAI } from "../lib/AIUtils/getAI.js"
-import {
-  loadConversationHistory,
-  saveConversationHistory,
-} from "../lib/AIUtils/ConversationHistory.js"
 import { executeToolCalls } from "../lib/AIUtils/tools/tools.js"
 import { parseAtMessage, getQuoteContent } from "../lib/AIUtils/messaging.js"
 import { randomEmojiLike, getImg } from "../lib/utils.js"
@@ -115,7 +111,7 @@ export class AIChat extends plugin {
       return false
     }
 
-    const { prefix, Channel, GroupContext, History, Tool } = matchedProfile
+    const { prefix, Channel, GroupContext, Tool } = matchedProfile
 
     let Prompt = matchedProfile.Prompt
     if (matchedProfile.name) {
@@ -166,7 +162,7 @@ export class AIChat extends plugin {
   }
 
   async doChat(e, matchedProfile, query) {
-    const { Channel, Prompt, GroupContext, History, Tool } = matchedProfile
+    const { Channel, Prompt, GroupContext, Tool } = matchedProfile
 
     logger.info(`Chat触发`)
     if (e.isGroup && typeof e.group?.setMsgEmojiLike === "function") {
@@ -177,13 +173,8 @@ export class AIChat extends plugin {
     let currentFullHistory = []
     let toolCallCount = 0
     let hasGeneratedImage = false
-    let hasForceRetried = false
 
     try {
-      if (History) {
-        currentFullHistory = await loadConversationHistory(e, matchedProfile.prefix)
-      }
-
       const imgBase64List = (await getImg(e, false, true)) || []
 
       const queryParts = [
@@ -195,8 +186,6 @@ export class AIChat extends plugin {
           },
         })),
       ]
-      const { prefix } = matchedProfile
-
       let currentAIResponse = await getAI(
         Channel,
         e,
@@ -265,16 +254,6 @@ export class AIChat extends plugin {
           }
 
           if (hasVoiceCall) {
-            if (History) {
-              currentFullHistory.push(...executedResults)
-              const historyToSave = currentFullHistory.filter(
-                (item) =>
-                  item.role === "user" ||
-                  (item.role === "model" &&
-                    item.parts.every((p) => p.hasOwnProperty("text")))
-              )
-              await saveConversationHistory(e, historyToSave, prefix)
-            }
             if (!hasGeneratedImage) {
               checkImageIntent(e, currentFullHistory, Channel).catch(() => {})
             }
@@ -298,41 +277,9 @@ export class AIChat extends plugin {
             return true
           }
         } else if (textContent) {
-          // 兜底：如果之前调过 searchTags 但没调 generateImage，强制再给一次机会
-          if (!hasForceRetried && toolCallCount > 0 && !hasGeneratedImage) {
-            const hadSearchTags = currentFullHistory.some(item =>
-              item.role === "model" && item.parts?.some(p => p.functionCall?.name === "searchTags")
-            )
-            if (hadSearchTags) {
-              hasForceRetried = true
-              logger.info("[Chat] 检测到已调用 searchTags 但未生图，注入强制提示再试一次")
-              currentFullHistory.push({ role: "model", parts: [{ text: textContent }] })
-              currentFullHistory.push({
-                role: "user",
-                parts: [{ text: "[系统提示] 你刚才已经搜索了标签，现在请直接调用 generateImage 工具生成图片，使用你已知的标签即可，不需要再搜索。" }],
-              })
-              toolCallCount++
-              currentAIResponse = await getAI(Channel, e, "", Prompt, GroupContext, Tool, currentFullHistory)
-              if (typeof currentAIResponse === "string") {
-                await this.reply(currentAIResponse, true, { recallMsg: 10 })
-                return true
-              }
-              continue
-            }
-          }
           finalResponseText = textContent
           break
         }
-      }
-
-      if (History) {
-        const historyToSave = currentFullHistory.filter(
-          (item) =>
-            item.role === "user" ||
-            (item.role === "model" &&
-              item.parts.every((p) => p.hasOwnProperty("text")))
-        )
-        await saveConversationHistory(e, historyToSave, prefix)
       }
 
       const msg = parseAtMessage(finalResponseText)
