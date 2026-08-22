@@ -1,8 +1,8 @@
 enabled: false
 apiUrl: "http://172.27.106.109:8188"
-defaultWorkflow: "anima_turbo"
+defaultWorkflow: "anima29_turbo"
 
-qualityPrefix: "score_9, score_8_up, score_7_up, masterpiece, best quality, source_anime, year_2025"
+qualityPrefix: "masterpiece, best quality, source_anime, year_2026"
 negativePrompt: "worst quality, low quality, score_1, score_2, score_3, score_4, bad anatomy, extra digits"
 
 krea2QualityPrefix: "masterpiece, best quality, highres, newest"
