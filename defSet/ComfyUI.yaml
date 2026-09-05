@@ -9,7 +9,7 @@ krea2QualityPrefix: "masterpiece, best quality, highres, newest"
 krea2NegativePrompt: "worst quality, low quality, blurry"
 
 # 换脸配置 (ReActor + HyperSwap)
-faceSwapModel: "hyperswap_1c_256.onnx"
+faceSwapModel: "simswap_unofficial_512.onnx"
 faceRestoreModel: "GFPGANv1.4.pth"
 faceRestoreVisibility: 1.0
 faceDetection: "retinaface_resnet50"
