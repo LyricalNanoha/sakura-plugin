@@ -1,0 +1,109 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": { "unet_name": "moodyKrea2Mix_v50BF16.safetensors", "weight_dtype": "default" }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": { "clip_name": "qwen3vl_4b_fp8_scaled.safetensors", "type": "krea2", "device": "default" }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": { "vae_name": "qwen_image_vae.safetensors" }
+  },
+  "20": {
+    "class_type": "PulidFluxInsightFaceLoader",
+    "inputs": { "provider": "CUDA" }
+  },
+  "21": {
+    "class_type": "PulidFluxEvaClipLoader",
+    "inputs": {}
+  },
+  "22": {
+    "class_type": "PulidFluxModelLoader",
+    "inputs": { "pulid_file": "pulid_flux_v0.9.0.safetensors" }
+  },
+  "23": {
+    "class_type": "ETN_LoadImageBase64",
+    "inputs": { "image": "%face_image%" }
+  },
+  "24": {
+    "class_type": "ApplyPulidFlux",
+    "inputs": {
+      "model": ["1", 0],
+      "pulid": ["22", 0],
+      "eva_clip": ["21", 0],
+      "face_analysis": ["20", 0],
+      "image": ["23", 0],
+      "weight": 0.9,
+      "start_at": 0.0,
+      "end_at": 1.0
+    }
+  },
+  "4": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": "%width%",
+      "height": "%height%",
+      "model": ["24", 0]
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": { "clip": ["2", 0], "text": "%prompt%" }
+  },
+  "6": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": { "conditioning": ["5", 0] }
+  },
+  "7": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "cfg": "%cfg%",
+      "model": ["4", 0],
+      "positive": ["5", 0],
+      "negative": ["6", 0]
+    }
+  },
+  "8": {
+    "class_type": "RandomNoise",
+    "inputs": { "noise_seed": "%seed%" }
+  },
+  "9": {
+    "class_type": "KSamplerSelect",
+    "inputs": { "sampler_name": "euler" }
+  },
+  "10": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "scheduler": "simple",
+      "steps": "%steps%",
+      "denoise": 1.0,
+      "model": ["4", 0]
+    }
+  },
+  "11": {
+    "class_type": "EmptyLatentImage",
+    "inputs": { "width": "%width%", "height": "%height%", "batch_size": 1 }
+  },
+  "12": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": ["8", 0],
+      "guider": ["7", 0],
+      "sampler": ["9", 0],
+      "sigmas": ["10", 0],
+      "latent_image": ["11", 0]
+    }
+  },
+  "13": {
+    "class_type": "VAEDecode",
+    "inputs": { "samples": ["12", 0], "vae": ["3", 0] }
+  },
+  "14": {
+    "class_type": "ETN_SendImageWebSocket",
+    "inputs": { "images": ["13", 0], "format": "PNG" }
+  }
+}
