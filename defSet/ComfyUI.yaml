@@ -9,11 +9,11 @@ krea2QualityPrefix: "masterpiece, best quality, highres, newest"
 krea2NegativePrompt: "worst quality, low quality, blurry"
 
 # FaceFusion 换脸配置 (Fork: LyricalNanoha/Facefusion_comfyui)
-ffSwapperModel: "simswap_unofficial_512"
+ffSwapperModel: "hyperswap_1c_256"
 ffDetectorModel: "scrfd"
-ffPixelBoost: "512x512"
+ffPixelBoost: "768x768"
 ffSelectorMode: "many"
-ffMaskBlur: 0.3
+ffMaskBlur: 0.5
 ffScoreThreshold: 0.3
 
 defaultWidth: 896
