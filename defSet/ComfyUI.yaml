@@ -13,6 +13,7 @@ faceSwapModel: "hyperswap_1c_256.onnx"
 faceRestoreModel: "GFPGANv1.4.pth"
 faceRestoreVisibility: 1
 faceDetection: "retinaface_resnet50"
+faceMaxFaces: 10
 
 defaultWidth: 896
 defaultHeight: 1152
