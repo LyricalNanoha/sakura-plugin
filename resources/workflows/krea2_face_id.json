@@ -31,7 +31,7 @@
     "class_type": "ApplyPulidFlux",
     "inputs": {
       "model": ["1", 0],
-      "pulid": ["22", 0],
+      "pulid_flux": ["22", 0],
       "eva_clip": ["21", 0],
       "face_analysis": ["20", 0],
       "image": ["23", 0],
