@@ -12,6 +12,7 @@ krea2NegativePrompt: "worst quality, low quality, blurry"
 reactorSwapModel: "inswapper_128.onnx"
 reactorFaceRestoreModel: "GFPGANv1.4.pth"
 reactorFaceRestoreVisibility: 1.0
+reactorMaxFaces: 6
 
 defaultWidth: 896
 defaultHeight: 1152
