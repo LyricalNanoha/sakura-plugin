@@ -8,13 +8,11 @@ negativePrompt: "worst quality, low quality, score_1, score_2, score_3, score_4,
 krea2QualityPrefix: "masterpiece, best quality, highres, newest"
 krea2NegativePrompt: "worst quality, low quality, blurry"
 
-# FaceFusion 换脸配置 (Fork: LyricalNanoha/Facefusion_comfyui)
-ffSwapperModel: "hyperswap_1c_256"
-ffDetectorModel: "scrfd"
-ffPixelBoost: "768x768"
-ffSelectorMode: "many"
-ffMaskBlur: 0.5
-ffScoreThreshold: 0.3
+# ReActor 换脸配置 (Fork: Buumcode/comfyui-reactor-node)
+faceSwapModel: "hyperswap_1c_256.onnx"
+faceRestoreModel: "GFPGANv1.4.pth"
+faceRestoreVisibility: 1
+faceDetection: "retinaface_resnet50"
 
 defaultWidth: 896
 defaultHeight: 1152
